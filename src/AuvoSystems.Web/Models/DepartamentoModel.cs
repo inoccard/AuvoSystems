@@ -1,6 +1,4 @@
-﻿using AuvoSystems.Web.Core.DomainObjects;
-
-namespace AuvoSystems.Web.Models;
+﻿namespace AuvoSystems.Web.Models;
 
 public class DepartamentoModel
 {

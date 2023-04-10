@@ -1,12 +1,11 @@
 ﻿using AuvoSystems.Web.Core.Services;
 
-namespace AuvoSystems.Web.Config
+namespace AuvoSystems.Web.Config;
+
+public static class DependencyInjectionConfig
 {
-    public static class DependencyInjectionConfig
+    public static void RegisterComponents(this IServiceCollection services)
     {
-        public static void RegisterComponents(this IServiceCollection services)
-        {
-            services.AddSingleton<ITratamentoArquivosService, TratamentoArquivosService>();
-        }
-}
+        services.AddScoped<ITratamentoArquivosService, TratamentoArquivosService>();
+    }
 }

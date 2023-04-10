@@ -9,14 +9,14 @@ public interface ITratamentoArquivosService
     /// Busca todos os arquivos do diretório
     /// </summary>
     /// <returns></returns>
-    public IList<Arquivo> BuscarArquivos();
+    public IList<Arquivo> BuscarArquivos(IEnumerable<string> nomeArquivos);
 
     /// <summary>
     /// Busca todos os dados de cada arquivo .csv
     /// </summary>
     /// <param name="arquivo"></param>
     /// <returns></returns>
-    public DadosArquivo[] ObterDadosDoArquivo(Arquivo arquivo);
+    public DadosArquivo[] ObterDadosDoArquivo(Stream arquivo);
 
     /// <summary>
     ///  Este método agrupa os funcionario para calcular suas horas, dias e salário a receber

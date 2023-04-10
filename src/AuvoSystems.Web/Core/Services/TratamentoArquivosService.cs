@@ -17,14 +17,17 @@ namespace AuvoSystems.Web.Core.Services
             _logger = logger;
         }
 
-        public IList<Arquivo> BuscarArquivos()
+        public IList<Arquivo> BuscarArquivos(IEnumerable<string> nomeArquivos)
         {
             try
             {
                 DirectoryInfo dirInfo = new(@"C:\Arquivo a Importar\");
 
                 _logger.LogInformation("Buscando todos os arquivos...");
-                var arquivos = dirInfo.GetFiles().AsParallel();
+                var arquivos = dirInfo.GetFiles().Where(arquivo => nomeArquivos.Select(n => n).Contains(arquivo.Name)).AsParallel();
+
+                if(!arquivos.Any())
+                    throw new Exception($"o diretório padrão não contém arquivos para importar, coloque os arquivos em: {dirInfo.FullName}");
 
                 // todos os arquivos neste diretório devem ser do tipo .csv
                 if (arquivos.Any(a => a.Exists && a.Extension != ".csv"))
@@ -42,7 +45,7 @@ namespace AuvoSystems.Web.Core.Services
             }
         }
 
-        public DadosArquivo[] ObterDadosDoArquivo(Arquivo arquivo)
+        public DadosArquivo[] ObterDadosDoArquivo(Stream arquivo)
         {
             var config = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
@@ -52,7 +55,7 @@ namespace AuvoSystems.Web.Core.Services
                 AllowComments = true,
             };
 
-            using var reader = new StreamReader(arquivo.Caminho, Encoding.Latin1);
+            using var reader = new StreamReader(arquivo, Encoding.Latin1);
             using var csv = new CsvReader(reader, config);
             var dados = csv.GetRecords<DadosArquivo>().ToArray();
             reader.Close();
@@ -60,7 +63,7 @@ namespace AuvoSystems.Web.Core.Services
             return dados;
         }
 
-        public async Task<DepartamentoModel> CalcularEAdicionarDados(string caminho, DadosArquivo[] dados)
+        public async Task<DepartamentoModel> CalcularEAdicionarDados(string nomeArquivo, DadosArquivo[] dados)
         {
             var diasDeTrabalho = 30;
             Dictionary<string, decimal> totais = new();
@@ -69,14 +72,12 @@ namespace AuvoSystems.Web.Core.Services
             // agrupa por código do funcionário
             var funcionariosAgrupados = dados.GroupBy(d => d.Codigo).OrderBy(e => e.Key);
 
-            // em cada arquivo deve conter dados somente de 1 mês
-            if (dados.Any(x => x.Data.Month != data.Month))
-                throw new Exception("Todoas os dados devem ser somentes de um mês, neste arquivo contém dados de mais de um!");
+            ValidarData(data, dados);
 
-            DepartamentoModel departamento = new(Path.GetFileNameWithoutExtension(caminho), data.Month, data.Year);
+            DepartamentoModel departamento = new(nomeArquivo, data.Month, data.Year);
 
-            await Parallel.ForEachAsync(funcionariosAgrupados, (funcionario, _) => {
-
+            await Parallel.ForEachAsync(funcionariosAgrupados, (funcionario, _) =>
+            {
                 var diasTrabalhados = funcionario.Select(f => f.Data).ToArray().Length;
                 var codigo = funcionario.Key;
                 var nomeFuncionario = funcionario.First().Nome;
@@ -205,6 +206,17 @@ namespace AuvoSystems.Web.Core.Services
             return (salarioExtra, salarioDesconto, salarioBruto);
         }
 
+        /// <summary>
+        /// em cada arquivo deve conter dados somente de 1 mês
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="dados"></param>
+        /// <exception cref="Exception"></exception>
+        private static void ValidarData(DateOnly data, DadosArquivo[] dados)
+        {
+            if (dados.Any(x => x.Data.Month != data.Month))
+                throw new Exception("Todoas os dados devem ser somentes de um mês, neste arquivo contém dados de mais de um!");
+        }
         #endregion Métodos Privados
     }
 }
