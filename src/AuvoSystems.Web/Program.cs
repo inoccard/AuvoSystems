@@ -1,7 +1,11 @@
+using AuvoSystems.Web.Config;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.RegisterComponents();
 
 var app = builder.Build();
 

@@ -2208,7 +2208,7 @@ Expr = Sizzle.selectors = {
 		"empty": function( elem ) {
 
 			// http://www.w3.org/TR/selectors/#empty-pseudo
-			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
+			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; Entidade ref: 5),
 			//   but not by others (comment: 8; processing instruction: 7; etc.)
 			// nodeType < 6 works because attributes (2) do not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
@@ -3649,7 +3649,7 @@ jQuery.Callbacks = function( options ) {
 };
 
 
-function Identity( v ) {
+function IdEntidade( v ) {
 	return v;
 }
 function Thrower( ex ) {
@@ -3791,7 +3791,7 @@ jQuery.extend( {
 										if ( special ) {
 											then.call(
 												returned,
-												resolve( maxDepth, deferred, Identity, special ),
+												resolve( maxDepth, deferred, IdEntidade, special ),
 												resolve( maxDepth, deferred, Thrower, special )
 											);
 
@@ -3803,9 +3803,9 @@ jQuery.extend( {
 
 											then.call(
 												returned,
-												resolve( maxDepth, deferred, Identity, special ),
+												resolve( maxDepth, deferred, IdEntidade, special ),
 												resolve( maxDepth, deferred, Thrower, special ),
-												resolve( maxDepth, deferred, Identity,
+												resolve( maxDepth, deferred, IdEntidade,
 													deferred.notifyWith )
 											);
 										}
@@ -3815,7 +3815,7 @@ jQuery.extend( {
 
 										// Only substitute handlers pass on context
 										// and multiple values (non-spec behavior)
-										if ( handler !== Identity ) {
+										if ( handler !== IdEntidade ) {
 											that = undefined;
 											args = [ returned ];
 										}
@@ -3883,7 +3883,7 @@ jQuery.extend( {
 								newDefer,
 								isFunction( onProgress ) ?
 									onProgress :
-									Identity,
+									IdEntidade,
 								newDefer.notifyWith
 							)
 						);
@@ -3895,7 +3895,7 @@ jQuery.extend( {
 								newDefer,
 								isFunction( onFulfilled ) ?
 									onFulfilled :
-									Identity
+									IdEntidade
 							)
 						);
 
