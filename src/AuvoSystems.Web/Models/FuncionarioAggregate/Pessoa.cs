@@ -1,6 +1,6 @@
 ﻿using AuvoSystems.Web.Core.SeedWork;
 
-namespace AuvoSystems.Web.Models;
+namespace AuvoSystems.Web.Models.FuncionarioAggregate;
 
 /// <summary>
 /// Objeto de Valor

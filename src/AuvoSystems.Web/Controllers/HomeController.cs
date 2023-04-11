@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using AuvoSystems.Web.Core.Services;
 using AuvoSystems.Web.Models;
 using AuvoSystems.Web.Core.Services.Notificacoes;
+using AuvoSystems.Web.Models.DepartementoAggregate;
 
 namespace AuvoSystems.Web.Controllers;
 

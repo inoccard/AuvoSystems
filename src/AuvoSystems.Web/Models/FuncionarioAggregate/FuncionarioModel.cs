@@ -1,6 +1,6 @@
 ﻿using AuvoSystems.Web.Core.DomainObjects;
 
-namespace AuvoSystems.Web.Models;
+namespace AuvoSystems.Web.Models.FuncionarioAggregate;
 
 /// <summary>
 /// Classe Raiz agregada

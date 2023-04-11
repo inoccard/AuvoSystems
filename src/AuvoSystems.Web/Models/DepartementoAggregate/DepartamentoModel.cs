@@ -1,6 +1,7 @@
 ﻿using AuvoSystems.Web.Core.DomainObjects;
+using AuvoSystems.Web.Models.FuncionarioAggregate;
 
-namespace AuvoSystems.Web.Models;
+namespace AuvoSystems.Web.Models.DepartementoAggregate;
 
 public class DepartamentoModel : IAggregateRoot
 {

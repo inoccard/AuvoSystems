@@ -3,8 +3,9 @@ using CsvHelper.Configuration;
 using CsvHelper;
 using System.Globalization;
 using System.Text;
-using AuvoSystems.Web.Models;
 using AuvoSystems.Web.Controllers;
+using AuvoSystems.Web.Models.DepartementoAggregate;
+using AuvoSystems.Web.Models.FuncionarioAggregate;
 
 namespace AuvoSystems.Web.Core.Services
 {

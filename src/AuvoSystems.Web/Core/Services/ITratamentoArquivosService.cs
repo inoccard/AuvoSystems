@@ -1,5 +1,5 @@
 ﻿using AuvoSystems.Web.Core.DomainObjects;
-using AuvoSystems.Web.Models;
+using AuvoSystems.Web.Models.DepartementoAggregate;
 
 namespace AuvoSystems.Web.Core.Services;
 
