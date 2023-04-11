@@ -28,7 +28,7 @@ namespace AuvoSystems.Web.Core.Services
                 _logger.LogInformation("Buscando todos os arquivos...");
                 var arquivos = dirInfo.GetFiles().Where(arquivo => nomeArquivos.Select(n => n).Contains(arquivo.Name)).AsParallel();
 
-                if(!arquivos.Any())
+                if (!arquivos.Any())
                     throw new Exception($"o diretório padrão não contém arquivos para importar, coloque os arquivos em: {dirInfo.FullName}");
 
                 // todos os arquivos neste diretório devem ser do tipo .csv
@@ -69,7 +69,12 @@ namespace AuvoSystems.Web.Core.Services
         public async Task<DepartamentoModel> CalcularEAdicionarDados(string nomeArquivo, DadosArquivo[] dados)
         {
             var diasDeTrabalho = 30;
-            Dictionary<string, decimal> totais = new();
+            Dictionary<string, decimal> totais = new()
+            {
+                { "totalPagar", 0 },
+                { "totalExtras", 0 },
+                { "totalDescontos", 0 }
+            };
             var data = dados.FirstOrDefault().Data;
 
             // agrupa por código do funcionário
@@ -141,18 +146,9 @@ namespace AuvoSystems.Web.Core.Services
         /// <param name="salarioFinal"></param>
         private static void AdicionarTotais(ref Dictionary<string, decimal> pagar, decimal salarioExtra, decimal salarioDesconto, decimal salarioFinal)
         {
-            if (pagar.Count == 0)
-            {
-                pagar.Add("totalPagar", salarioFinal);
-                pagar.Add("totalExtras", salarioExtra);
-                pagar.Add("totalDescontos", salarioDesconto);
-            }
-            else
-            {
-                pagar["totalPagar"] += salarioFinal;
-                pagar["totalExtras"] += salarioExtra;
-                pagar["totalDescontos"] += salarioDesconto;
-            }
+            pagar["totalPagar"] += salarioFinal;
+            pagar["totalExtras"] += salarioExtra;
+            pagar["totalDescontos"] += salarioDesconto;
         }
 
         /// <summary>
