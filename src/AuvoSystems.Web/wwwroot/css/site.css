@@ -37,3 +37,7 @@ body {
     margin-top: 2%;
     margin-bottom: 20%;
 }
+
+.form-ordem, .about_info_wrap {
+    margin-bottom: 10%;
+}
