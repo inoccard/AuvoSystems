@@ -31,13 +31,15 @@
                         ou atualização em algumas tabelas do banco de dados, tinha que capturar esses dados pela aplicação e publicar em uma fila.
                     </p>
                     <p>Estes dados eram enviados em forma de mensagens nas filas, para um aplicativo externo</p>
-                    <p>A implementação foi feita em uma das <strong>WebAPI .Net Core 5</strong>, contexto de <strong>venda</strong> de um microserviço.</p>
+                    <p>A implementação foi feita em uma das <strong>WebAPI .Net Core 5</strong>, contexto de <strong>venda</strong> de um microsserviço.</p>
                     <p>Para capturar os dados, foi utilizado a tecnologia <strong>SignalR</strong></p>
                     <p>Para enviar as mensagens, foi utilizado a tecnologia de mensageria <strong>RabbitMQ</strong> implementado com o <strong>MassTransit</strong></p>
                     <p>
                         Quando falamos de mensageria, podemos ter comunicação síncrona ou assícrona, onde temos um publicador (Publisher), que envia
                         a mensagem para uma exchange e do outro lado, um consumidor (Consumer) que recebe mensagem por meio de uma fila e trata os dados.
                     </p>
+                    <p>este desafio me marcou muito porque foi o primeiro contato que tive com ambas tecnologias e arquitetura, até então só conhecia comunicação 
+                        entre sistemas por meio de requisição http. A comunicação por mensageria foi um grande salto e abriu a mente para conhecer o ecossistema de microsserviços</p>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-10">

@@ -8,6 +8,7 @@ namespace AuvoSystems.Web.Models.FuncionarioAggregate;
 public class FuncionarioModel : Pessoa, IAggregateRoot
 {
     public decimal TotalReceber { get; set; }
+    public decimal TotalDescontos { get; set; }
     public TimeOnly HorasExtras { get; private set; }
     public TimeOnly HorasDebito { get; private set; }
     public int DiasFalta { get; private set; }
@@ -18,6 +19,7 @@ public class FuncionarioModel : Pessoa, IAggregateRoot
         string nome,
         int codigo,
         decimal totalReceber,
+        decimal totalDescontos,
         TimeOnly horasExtras,
         TimeOnly horasFalta,
         int diasFalta,
@@ -28,6 +30,7 @@ public class FuncionarioModel : Pessoa, IAggregateRoot
     {
         Codigo = codigo;
         TotalReceber = totalReceber;
+        TotalDescontos = totalDescontos;
         DiasFalta = diasFalta;
         HorasDebito = horasFalta;
         HorasExtras = horasExtras;

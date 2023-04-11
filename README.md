@@ -28,6 +28,7 @@ Pequeno projeto em .NET 7 + MVC para gerar ordem de pagamento a partir de arquiv
     - Notificação de Domain
     - Paralelismo
     - Métodos Assíncronos
+    - Logs
 
 ## 🎮 Começando
 

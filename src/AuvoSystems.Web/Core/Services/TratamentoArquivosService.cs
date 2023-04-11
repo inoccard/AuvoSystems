@@ -103,7 +103,16 @@ namespace AuvoSystems.Web.Core.Services
                 AdicionarTotais(ref totais, salarioExtra, salarioDesconto, salarioFinal);
 
                 departamento.AdicionarFuncionario(
-                    new FuncionarioModel(nomeFuncionario, codigo, salarioFinal, TimeOnly.FromTimeSpan(horasExtra), TimeOnly.FromTimeSpan(horasFalta), diasFalta, diasExtra, diasTrabalhados)
+                    new FuncionarioModel(
+                        nomeFuncionario,
+                        codigo,
+                        salarioFinal,
+                        salarioDesconto,
+                        TimeOnly.FromTimeSpan(horasExtra),
+                        TimeOnly.FromTimeSpan(horasFalta),
+                        diasFalta *-1,
+                        diasExtra,
+                        diasTrabalhados)
                     );
 
                 return new ValueTask();
