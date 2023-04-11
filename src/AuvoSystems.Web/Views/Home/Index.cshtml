@@ -2,19 +2,62 @@
     ViewData["Title"] = "Home Page";
 }
 
-<form asp-controller="Home" asp-action="GerarOrderPagamento" method="post" enctype="multipart/form-data">
-    <h2>Selecione arquivos para gerar Ordem</h2>
-    <div class="form-group">
-        <label for="nome">Seu Nome</label>
-        <input type="text" class="form-control" name="Responsavel" placeholder="Qual é o seu nome?">
+<section>
+    @* slider_area_start *@
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="outline_text d-none d-lg-block">
+                Auvo Systems
+            </div>
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center">
+                            <span>Seja Bem-Vindo</span>
+                            <h3>
+                                Pequeno projeto em .NET 7 + MVC para gerar ordem de pagamento a partir de arquivos .csv, em um arquivo json.
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr />
-    <div class="form-group">
-        <label for="arquivo">Selecione os arquivos</label>
-        <input type="file" class="form-control" name="Arquivos" id="arquivo" placeholder="Arquivos" multiple>
+  @* slider_area_end *@
+
+    @* service_area *@
+    <div class="service_area">
+        <div class="outline_text white d-none d-lg-block">
+            Descrição
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="single_service">
+                        <h3>Nome Completo</h3>
+                        <h5>Inocêncio Quissumua Cardoso</h5>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="single_service">
+                        <h3>Cargo Pretendido</h3>
+                        <h5>Desenvolvedor de Software</h5>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="single_service">
+                        <h3>Pretensão Salarial</h3>
+                        <h5>R$ 8.500,00 - R$ 9.000,00</h5>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="single_service">
+                        <h3>Data do Teste</h3>
+                        <h5>10/04/2023</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr />
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Gerar Ordem</button>
-    </div>
-</form>
+    @* service_area *@
+</section>

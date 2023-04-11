@@ -1,4 +1,4 @@
-﻿using AuvoSystems.Web.Core.DomainObjects;
+﻿using AuvoSystems.Web.Core.SeedWork;
 
 namespace AuvoSystems.Web.Models;
 

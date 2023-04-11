@@ -3,8 +3,8 @@ using CsvHelper.Configuration;
 using CsvHelper;
 using System.Globalization;
 using System.Text;
-using AuvoSystems.Controllers;
 using AuvoSystems.Web.Models;
+using AuvoSystems.Web.Controllers;
 
 namespace AuvoSystems.Web.Core.Services
 {
@@ -17,6 +17,7 @@ namespace AuvoSystems.Web.Core.Services
             _logger = logger;
         }
 
+        [Obsolete]
         public IList<Arquivo> BuscarArquivos(IEnumerable<string> nomeArquivos)
         {
             try
@@ -45,7 +46,7 @@ namespace AuvoSystems.Web.Core.Services
             }
         }
 
-        public DadosArquivo[] ObterDadosDoArquivo(Stream arquivo)
+        public DadosArquivo[] ObterDadosDoArquivo(string nomeArquivo, Stream arquivo)
         {
             var config = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
@@ -55,6 +56,7 @@ namespace AuvoSystems.Web.Core.Services
                 AllowComments = true,
             };
 
+            _logger.LogInformation($"Buscando todos os dados do arquivo {nomeArquivo}...");
             using var reader = new StreamReader(arquivo, Encoding.Latin1);
             using var csv = new CsvReader(reader, config);
             var dados = csv.GetRecords<DadosArquivo>().ToArray();
@@ -75,7 +77,9 @@ namespace AuvoSystems.Web.Core.Services
             ValidarData(data, dados);
 
             DepartamentoModel departamento = new(nomeArquivo, data.Month, data.Year);
+            _logger.LogInformation($"Calculando dados do departamento {nomeArquivo}...");
 
+            // Processamento paralelo
             await Parallel.ForEachAsync(funcionariosAgrupados, (funcionario, _) =>
             {
                 var diasTrabalhados = funcionario.Select(f => f.Data).ToArray().Length;
@@ -106,6 +110,7 @@ namespace AuvoSystems.Web.Core.Services
 
         public void EscreverNoAquivoJson(int anoVigencia, int mesVigencia, string jsonString)
         {
+            _logger.LogInformation($"Escrevendo no arquivo json...");
             var file = new FileInfo(Path.GetFullPath($@"{Path.GetTempPath()}Ordem-de-Pagamento-{anoVigencia}-{mesVigencia}.json"));
 
             DeleteFile(file);

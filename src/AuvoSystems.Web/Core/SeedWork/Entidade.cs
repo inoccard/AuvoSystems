@@ -1,4 +1,4 @@
-﻿namespace AuvoSystems.Web.Core.DomainObjects;
+﻿namespace AuvoSystems.Web.Core.SeedWork;
 
 /// <summary>
 /// Objeto base para as classes de entidade

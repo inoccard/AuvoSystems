@@ -1,6 +1,8 @@
-﻿namespace AuvoSystems.Web.Models;
+﻿using AuvoSystems.Web.Core.DomainObjects;
 
-public class DepartamentoModel
+namespace AuvoSystems.Web.Models;
+
+public class DepartamentoModel : IAggregateRoot
 {
     public string Nome { get; set; }
     public int MesVigencia { get; private set; }

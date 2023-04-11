@@ -1,0 +1,39 @@
+﻿@model AuvoSystems.Web.Models.RequestModel
+
+@{
+    ViewData["Title"] = "Ordem de Pagamento";
+}
+
+<section>
+    <div class="bradcam_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Ordem de Pagamento</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="creative_people">
+        <div class="container">
+            <form asp-controller="Home" asp-action="GerarOrdemPagamento" method="post" enctype="multipart/form-data" class="form-ordem">
+                <h2>Selecione arquivos para gerar Ordem</h2>
+                <div class="form-group">
+                    <label for="nome">Seu Nome</label>
+                    <input type="text" class="form-control" name="Responsavel" placeholder="Qual é o seu nome?">
+                </div>
+                <div class="form-group">
+                    <label for="arquivo">Selecione os arquivos</label>
+                    <input type="file" class="form-control col-sm-4" name="Arquivos" placeholder="Arquivos" multiple>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Gerar Ordem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
