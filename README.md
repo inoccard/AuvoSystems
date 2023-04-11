@@ -42,3 +42,8 @@ Pequeno projeto em .NET 7 + MVC para gerar ordem de pagamento a partir de arquiv
 Abra uma issue e vamos discutir! Não envie PRs para recursos não discutidos ou não aprovados.
 
 Se você quiser me ajudar, escolha um problema aprovado e implemente-o.
+
+## Overview da Arquitetura
+<p align="center">
+    <img width="177" alt="auvo" src="https://user-images.githubusercontent.com/27835910/231154079-b1e1ffcf-3ab1-4cfc-956f-86a6aa0167e5.png"> 
+</p>
